@@ -1,26 +1,23 @@
 <?php
+require('vendor/autoload.php');
+
+use Sc\Webproject\App;
+
+// create an app object based on App class
+$app = new App();
+// print out the environment variables
+// print_r($_ENV);
 $title = "Home Page";
+$message = "Hello there";
+
+// create a template loader
+$loader = new \Twig\Loader\FilesystemLoader('templates');
+$twig = new \Twig\Environment( $loader );
+// load the template into memory
+$template = $twig -> load('index.html.twig');
+// add some variables for twig to render
+echo $template -> render([
+    'title' => $title,
+    'message' => $message
+]);
 ?>
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-
-<body>
-    <a href="index.php">Home Page</a>
-    <a href="test.php">Test Page</a>
-    <?php
-    //phpinfo();
-    echo "<h1>Hello World</h1>";
-    $message = "Hey there!";
-    echo "<p>$message</p>";
-    ?>
-</body>
-
-
-</html>
